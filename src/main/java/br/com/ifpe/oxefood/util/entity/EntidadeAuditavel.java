@@ -2,29 +2,41 @@ package br.com.ifpe.oxefood.util.entity;
 
 import java.time.LocalDate;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Version;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-
 @MappedSuperclass
 public abstract class EntidadeAuditavel extends EntidadeNegocio {
-    @Id
-   @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  
+   @JsonIgnore
+   @Version
+   private Long versao;
 
-    private Long versao;
+   @JsonIgnore
+   @CreatedDate
+   private LocalDate dataCriacao;
 
-    private LocalDate dataCriacao;
+   @JsonIgnore
+   @LastModifiedDate
+   private LocalDate dataUltimaModificacao;
 
-    private LocalDate dataUltimaModificacao;
+   @JsonIgnore
+   @Column
+   private Long criadoPor; // Id do usuário que o criou
 
-    private Long criadoPor; // Id do usuário que o criou
-
-    private Long ultimaModificacaoPor; // Id do usuário que fez a última alteração
+   @JsonIgnore
+   @Column
+   private Long ultimaModificacaoPor; // Id do usuário que fez a última alteração
 
 }
