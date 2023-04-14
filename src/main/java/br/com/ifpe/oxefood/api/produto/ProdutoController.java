@@ -1,4 +1,5 @@
-package br.com.ifpe.oxefood.api.cliente;
+package br.com.ifpe.oxefood.api.produto;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,21 +10,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.ifpe.oxefood.modelo.cliente.Cliente;
-import br.com.ifpe.oxefood.modelo.cliente.ClienteService;
+import br.com.ifpe.oxefood.modelo.Produto.Produto;
+import br.com.ifpe.oxefood.modelo.Produto.ProdutoService;
 import br.com.ifpe.oxefood.util.entity.GenericController;
 
 @RestController
-@RequestMapping("/api/cliente")
-public class ClienteController extends GenericController {
+@RequestMapping("/api/produto")
+public class ProdutoController extends GenericController {
 
    @Autowired
-   private ClienteService clienteService;
+   private ProdutoService ProdutoService;
 
    @PostMapping
-   public ResponseEntity<Cliente> save(@RequestBody @Valid ClienteRequest request) {
+   public ResponseEntity<Produto> save(@RequestBody @Valid ProdutoRequest request) {
 
-       Cliente cliente = clienteService.save(request.build());
-       return new ResponseEntity<Cliente>(cliente, HttpStatus.CREATED);
+       Produto produto = ProdutoService.save(request.build());
+       return new ResponseEntity<Produto>(produto, HttpStatus.CREATED);
    }
 }

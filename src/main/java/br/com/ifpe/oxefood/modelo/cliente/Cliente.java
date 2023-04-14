@@ -1,6 +1,5 @@
 package br.com.ifpe.oxefood.modelo.cliente;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -16,19 +15,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-
+@Entity
+@Table(name = "Cliente")
+@Where(clause = "habilitado = true")
 @Builder
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
-
-@Entity
-@Table(name = "Cliente")
-@Where(clause = "habilitado = true")
-public class  Cliente extends EntidadeAuditavel  implements Serializable{
+public class Cliente extends EntidadeAuditavel  {
 
    @Column
    private String nome;

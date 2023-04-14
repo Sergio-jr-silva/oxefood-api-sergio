@@ -1,6 +1,5 @@
 package br.com.ifpe.oxefood.modelo.Entregador;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -10,20 +9,30 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Where;
 
 import br.com.ifpe.oxefood.util.entity.EntidadeAuditavel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
 @Table(name = "Entregador")
 @Where(clause = "habilitado = true")
-public class  Entregador extends EntidadeAuditavel  implements Serializable{
+@Builder
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class Entregador extends EntidadeAuditavel  {
 
    @Column
    private String nome;
 
    @Column
    private String cpf;
-
+   
    @Column
    private String rg;
-
 
    @Column
    private LocalDate dataNascimento;
@@ -35,10 +44,10 @@ public class  Entregador extends EntidadeAuditavel  implements Serializable{
    private String foneFixo;
 
    @Column
-   private int qtdEntregasRealizadas;
+   private Integer qtdEntregasRealizadas;
 
    @Column
-   private double valorFrete;
+   private Double valorFrete;
 
    @Column
    private String enderecoRua;
@@ -48,19 +57,20 @@ public class  Entregador extends EntidadeAuditavel  implements Serializable{
 
    @Column
    private String enderecoBairro;
-
+    
    @Column
    private String enderecoCidade;
 
    @Column
    private String enderecoCep;
+   
+   @Column
+   private String enderecoUf;
 
    @Column
-   private String EnderecoUf;
+   private String enderecoComplemento;
 
    @Column
-   private String enderecoCompleto;
+   private Boolean ativo;
 
-   @Column
-   private boolean ativo;
 }
