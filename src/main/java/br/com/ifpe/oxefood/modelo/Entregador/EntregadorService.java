@@ -1,5 +1,7 @@
 package br.com.ifpe.oxefood.modelo.Entregador;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,4 +22,15 @@ public class EntregadorService extends GenericService {
        return repository.save(Entregador);
    }
 
+   
+
+   public List<Entregador> listarTodos() {
+  
+    return repository.findAll();
+}
+
+public Entregador obterPorID(Long id) {
+
+    return repository.findById(id).get();
+}
 }
