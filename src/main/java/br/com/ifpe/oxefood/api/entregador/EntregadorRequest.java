@@ -19,7 +19,7 @@ public class EntregadorRequest {
    private String nome;
 
    @JsonFormat(pattern = "dd/MM/yyyy")
-   private LocalDate dataNascimento;
+   private LocalDate DataNascimento;
 
    private String cpf;
 
@@ -55,6 +55,7 @@ public class EntregadorRequest {
        return Entregador.builder()
                .nome(nome)
                .cpf(cpf)
+               .DataNascimento(DataNascimento)
                .rg(rg)
                .foneCelular(foneCelular)
                .foneFixo(foneFixo)
