@@ -1,5 +1,7 @@
 package br.com.ifpe.oxefood.api.Comprador;
+
 import java.time.LocalDate;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.com.ifpe.oxefood.modelo.Comprador.Comprador;
@@ -12,25 +14,22 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class CompradorRequest {
-
+ 
     private String nome;
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate contratoEm;
-    
     private String enderecoComercial;
 
     private String enderecoResidencial;
+    
+    private Double comissao;
 
-    private double comissao;
-
-    private boolean trabalhoHomeOffice;
+    private Boolean trabalhoHomeOffice;
 
     private int qtdComprasMediasMes;
-
     
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private LocalDate contratadoEm;
 
     public Comprador build() {
 
@@ -41,7 +40,8 @@ public class CompradorRequest {
                 .comissao(comissao)
                 .trabalhoHomeOffice(trabalhoHomeOffice)
                 .qtdComprasMediasMes(qtdComprasMediasMes)
-                .contratoEm(contratoEm)
+                .contratadoEm(contratadoEm)
                 .build();
     }
+
 }

@@ -43,5 +43,5 @@ public class Comprador extends EntidadeAuditavel{
     private int qtdComprasMediasMes;
 
     @Column
-    private LocalDate contratoEm;
+    private LocalDate contratadoEm;
 }
