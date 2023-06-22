@@ -1,4 +1,8 @@
 package br.com.ifpe.oxefood.api.cliente;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 import java.util.List;
 
 import javax.validation.Valid;
@@ -26,6 +30,7 @@ public class ClienteController extends GenericController {
    @Autowired
    private ClienteService clienteService;
 
+    @ApiOperation(value = "Serviço responsável por salvar um cliente no sistema.")
    @PostMapping
    public ResponseEntity<Cliente> save(@RequestBody @Valid ClienteRequest request) {
 
@@ -33,11 +38,22 @@ public class ClienteController extends GenericController {
        return new ResponseEntity<Cliente>(cliente, HttpStatus.CREATED);
    }
 
+ @ApiOperation(value = "Serviço responsável por listar todos os clientes do sistema.")
    @GetMapping
    public List<Cliente> listarTodos() {
   
        return clienteService.listarTodos();
    }
+   
+    @ApiOperation(value = "Serviço responsável por obter um cliente referente ao Id passado na URL.")
+   @ApiResponses(value = {
+       @ApiResponse(code = 200, message = "Retorna  o cliente."),
+       @ApiResponse(code = 401, message = "Acesso não autorizado."),
+       @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso."),
+       @ApiResponse(code = 404, message = "Não foi encontrado um registro para o Id informado."),
+       @ApiResponse(code = 500, message = "Foi gerado um erro no servidor."),
+   })
+
 
    @GetMapping("/{id}")
    public Cliente obterPorID(@PathVariable Long id) {
